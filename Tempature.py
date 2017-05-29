@@ -20,7 +20,7 @@ def convertTemp(volts):
     temp = round(temp, 4)
     return temp
 
-delay = 5
+delay = 1
 while True:
     data = ReadChannel(0)
     volts = convertVolts(data)
@@ -28,4 +28,5 @@ while True:
     print("adc:".format(data))
     print("volts:".format(volts))
     print("temp:".format(temp))
-    time.sleep(delay)
+    print("--------------------")
+    time.sleep(1)
