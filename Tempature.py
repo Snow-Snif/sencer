@@ -22,7 +22,9 @@ def convertTemp(volts):
 
 delay = 1
 while True:
-
+    data = ReadChannel(0)
+    volts = convertVolts(data)
+    temp = convertTemp(volts)
     print("adc:".format(data))
     print("volts:".format(volts))
     print("temp:".format(temp))
