@@ -22,9 +22,10 @@ def convertTemp(volts):
 
 delay = 5
 while True:
-    volts = convertVolts(ReadChannel(0))
+    data = ReadChannel(0)
+    volts = convertVolts(data)
     temp = convertTemp(volts)
-    print("adc:"(ReadChannel(0)))
-    print("volts:"(volts))
-    print("temp:"(temp))
+    print("adc:".format(ReadChannel(0)))
+    print("volts:".format(volts))
+    print("temp:".format(temp))
     time.sleep(delay)
