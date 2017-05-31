@@ -7,8 +7,8 @@ spi.open(0, 0)
 
 def ReadChannel(channel):
     adc = spi.xfer([1, (8 + channel) << 4, 0])
-    data = ((adc[1]&3) << 8) + adc[2]
-    return data
+    #data = ((adc[1]&3) << 8) + adc[2]
+    return (((adc[1]&3) << 8) + adc[2])
 
 def convertVolts(data):
     volts = (data * 3.3) / float(1023)
@@ -20,7 +20,10 @@ def convertTemp(volts):
     temp = round(temp, 4)
     return temp
 
+temp_channel = 0
+
 delay = 1
+
 while True:
     data = ReadChannel(0)
     volts = convertVolts(data)
