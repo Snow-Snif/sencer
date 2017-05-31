@@ -15,17 +15,12 @@ def convertVolts(data,places):
     volts = round(volts, places)
     return volts
 
-def convertTemp(data,places):
-    temp = ((330 * data) / float(1023)) - 50.0
-    temp = round(temp, places)
-    return temp
-
 light_channel = 1
 
 delay = 1
 
 while True:
-    light_level = ReadChannel(0)
+    light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
     print "--------------------------------------------"
     print("Light: {} ({}V)".format(light_level, light_volts))
