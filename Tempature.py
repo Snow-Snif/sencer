@@ -16,7 +16,7 @@ def convertVolts(data,places):
     return volts
 
 def convertTemp(data,places):
-    temp = ((330 * data)/float(1023)) - 50.0
+    temp = (100 * data) - 50.0
     temp = round(temp, places)
     return temp
 
