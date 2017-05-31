@@ -16,7 +16,7 @@ def convertVolts(data,places):
     return volts
 
 def convertTemp(data,places):
-    temp = (100 * data) - 50.0
+    temp = ((330 * data) / float(1023)) - 50.0
     temp = round(temp, places)
     return temp
 
@@ -25,9 +25,9 @@ temp_channel = 0
 delay = 1
 
 while True:
-    data = ReadChannel(temp_channel)
-    volts = convertVolts(data,2)
-    temp = convertTemp(data,2)
+    data = ReadChannel(0)
+    volts = convertVolts(volts)
+    temp = convertTemp(volts)
     print("Temp:{}({}V{}degC)".format(data,volts,temp))
     print("--------------------")
     time.sleep(1)
