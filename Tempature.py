@@ -26,8 +26,8 @@ delay = 1
 
 while True:
     data = ReadChannel(0)
-    volts = convertVolts(data)
-    temp = convertTemp(volts)
+    volts = convertVolts(data,2)
+    temp = convertTemp(volts,2)
     print("Temp:{}({}V{}degC)".format(data,volts,temp))
     print("--------------------")
     time.sleep(1)
