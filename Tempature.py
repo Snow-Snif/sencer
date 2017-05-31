@@ -22,7 +22,7 @@ def convertTemp(data,places):
 
 temp_channel = 0
 
-delay = 5
+delay = 1
 
 while True:
     data = ReadChannel(0)

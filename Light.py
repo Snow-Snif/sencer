@@ -20,9 +20,9 @@ def convertTemp(data,places):
     temp = round(temp, places)
     return temp
 
-temp_channel = 0
+temp_channel = 1
 
-delay = 5
+delay = 1
 
 while True:
     light_level = ReadChannel(0)
