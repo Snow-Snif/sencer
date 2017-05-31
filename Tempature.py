@@ -30,4 +30,4 @@ while True:
     temp = convertTemp(volts,2)
     print("Temp:{}({}V{}degC)".format(data,volts,temp))
     print("--------------------")
-    time.sleep(1)
+    time.sleep(delay)
