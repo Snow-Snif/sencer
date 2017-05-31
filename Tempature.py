@@ -1,7 +1,7 @@
 import spidev
 import time
 import os
-import sys
+
 
 spi = spidev.SpiDev()
 spi.open(0, 0)
