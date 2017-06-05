@@ -6,7 +6,6 @@ import RPi.GPIO as GPIO
 spi = spidev.SpiDev()
 spi.open(0, 0)
 GPIO.setmode(GPIO.BCM)
-sss
 
 def ReadChannel(channel):
     adc = spi.xfer2([1, (8 + channel) << 4, 0])
