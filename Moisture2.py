@@ -15,19 +15,14 @@ def convertVolts(data,places):
     volts = round(volts, places)
     return volts
 
-def convertTemp(data,places):
-    temp = ((330 * data) / float(1023)) - 50.0
-    temp = round(temp, places)
-    return temp
-
-temp_channel = 0
+moisture2_pin = 3
 
 delay = 1
 
 while True:
-    data = ReadChannel(0)
-    volts = convertVolts(data,2)
-    temp = convertTemp(volts,2)
-    print("--------------------")
-    print("Temp:{}({}V{}degC)".format(data,volts,temp))
+    data = ReadChannel(3)
+    volts = convertVolts(data, 2)
+    print "--------------------------------------------"
+    print("Moisture (Air): {} ({}V)".format(data, volts))
     time.sleep(delay)
+

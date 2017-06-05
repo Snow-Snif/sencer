@@ -11,13 +11,19 @@ def ReadChannel(channel):
     adc = spi.xfer2([1, (8 + channel) << 4, 0])
     return ((adc[1] & 3) << 8) + adc[2]
 
+def convertTemp(data,places):
+    temp = ((330 * data) / float(1023)) - 50.0
+    temp = round(temp, places)
+    return temp
+
 moisture_pin = 2;
 
 delay = 1
 
 while True:
-    # read the analog pin
-    moisture = ReadChannel(0)
+
+    data = ReadChannel(2)
+    volt = convertTemp(data,2)
     print("--------------------")
-    print("moisture: {0}".format(moisture))
+    print("moisture: {}({}V)".format(data,volt))
     time.sleep(delay)
