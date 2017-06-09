@@ -20,7 +20,7 @@ def convertTemp(data,places):
     temp = round(temp, places)
     return temp
 
-temp_channel = 0
+temp_channel = 10
 
 delay = 1
 
