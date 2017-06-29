@@ -21,7 +21,7 @@ delay = 1
 
 while True:
     data = ReadChannel(2)
-    volts = convertVolts(data, 2)
+    volts = convertVolts(data, 5)
     print "--------------------------------------------"
     print("Moisture (Air): {} ({}V)".format(data, volts))
     time.sleep(delay)
