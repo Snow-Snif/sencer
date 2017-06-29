@@ -15,7 +15,7 @@ def convertVolts(data,places):
     volts = round(volts, places)
     return volts
 
-def convertTemp(data,places):  #placesは有効数字の桁
+def convertTemp(data,places):
     temp = ((330 * data) / float(1023)) - 50.0
     temp = round(temp, places)
     return temp
