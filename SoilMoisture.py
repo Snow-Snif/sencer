@@ -15,7 +15,7 @@ def convertVolts(data,places):
     volts = round(volts, places)
     return volts
 
-moisture2_pin = 3
+moisture2_pin = 2
 
 delay = 1
 
