@@ -20,7 +20,7 @@ moisture2_pin = 2
 delay = 1
 
 while True:
-    data = ReadChannel(3)
+    data = ReadChannel(2)
     volts = convertVolts(data, 2)
     print "--------------------------------------------"
     print("Moisture (Air): {} ({}V)".format(data, volts))
