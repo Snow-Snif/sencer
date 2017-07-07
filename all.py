@@ -28,9 +28,6 @@ delay = 1
 
 while True:
     data = ReadChannel(0)
-    volts = convertVolts(data)
-    temp = convertTemp(volts)
-
 
     light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
