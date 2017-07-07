@@ -1,33 +1,31 @@
-import spidev
+
 import time
-import os
-
-
+import sys
+import spidev
 spi = spidev.SpiDev()
-spi.open(0, 0)
-
-def ReadChannel(channel):
-    adc = spi.xfer2([1, (8 + channel) << 4, 0])
-    return ((adc[1]&3) << 8) + adc[2]
-
-def convertVolts(data,places):
+spi.open(0,0)
+def readAdc(channel):
+    adc = spi.xfer2([1,(8+channel)<<4,0])
+    data = ((adc[1]&3) << 8) + adc[2]
+    return data
+def convertVolts(data):
     volts = (data * 3.3) / float(1023)
-    volts = round(volts, places)
+    volts = round(volts,4)
     return volts
-
-def convertTemp(data,places):
-    temp = ((330 * data) / float(1023)) - 50.0
-    temp = round(temp, places)
+def convertTemp(volts):
+    temp = (100 * volts) - 50.0
+    temp = round(temp,4)
     return temp
-
-temp_channel = 0
-
-delay = 1
-
-while True:
-    data = ReadChannel(0)
-    volts = convertVolts(data,2)
-    temp = convertTemp(volts,2)
-    print("--------------------")
-    print("Temp:{}({}V{}degC)".format(data,volts,temp))
-    time.sleep(delay)
+if __name__ == '__main__':
+    try:
+        while True:
+            data = readAdc(0)
+            print("adc  : {:8} ".format(data))
+            volts = convertVolts(data)
+            temp = convertTemp(volts)
+            print("volts: {:8.2f}".format(volts))
+            print("temp : {:8.2f}".format(temp))
+            time.sleep(5)
+    except KeyboardInterrupt:
+        spi.close()
+        sys.exit(0)
