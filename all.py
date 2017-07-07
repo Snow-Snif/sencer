@@ -37,5 +37,8 @@ while True:
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
+    volts = convertVolts(data)
+    temp = convertTemp(volts)
+
     print("Temp:{}".format(temp))
     time.sleep(delay)
