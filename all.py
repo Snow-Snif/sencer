@@ -31,7 +31,7 @@ while True:
     temp = convertTemp(volts,2)
 
     light_level = ReadChannel(1)
-    light_volts = convertVolts(light_level, 2)
+    light_volts = convertVolts(light_level, 5)
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
