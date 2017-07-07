@@ -30,7 +30,7 @@ while True:
     data = ReadChannel(0) #adc value
     volts = convertVolts(data,2) #volt
     temp = convertTemp(volts,2)
-    result =
+    result = temp
 
 
     light_level = ReadChannel(1)
