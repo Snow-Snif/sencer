@@ -1,41 +1,42 @@
 import spidev
 import time
 import os
-import sys
-
+import RPi.GPIO as GPIO
+import dht11
+import datetime
 
 spi = spidev.SpiDev()
 spi.open(0, 0)
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.cleanup()
+instance = dht11.DHT11(pin=4)
+
 def ReadChannel(channel):
     adc = spi.xfer2([1, (8 + channel) << 4, 0])
-    data = ((adc[1]&3) << 8) + adc[2]
-    return data
+    return ((adc[1]&3) << 8) + adc[2]
 
-def convertVolts(data):
+def convertVolts(data,places):
     volts = (data * 3.3) / float(1023)
-    volts = round(volts, 4)
+    volts = round(volts, places)
     return volts
 
-def convertTemp(volts):
-    temp = ((330 * data) / float(1023)) - 50.0
-    temp = round(temp, 4)
-    return temp
-
-temp_channel = 0
 light_channel = 1
 
 delay = 1
 
 while True:
-    data = ReadChannel(0)
-    volts = convertVolts(data)
-    temp = convertTemp(volts)
-
     light_level = ReadChannel(1)
-    light_volts = convertVolts(light_level)
+    light_volts = convertVolts(light_level, 2)
 
-    print("--------------------------------------------")
-    print("Light: {} ({}V)".format(light_level, light_volts))
-    print("Temp:{}".format(temp))
-    time.sleep(delay)
+    result = instance.read()
+    if result.is_valid():
+        print("Last valid input: " + str(datetime.datetime.now()))
+        print("Temperature: %d C" % result.temperature)
+        print("Humidity: %d %%" % result.humidity)
+        print "--------------------------------------------"
+        print("Light: {} ({}V)".format(light_level, light_volts))
+
+    time.sleep(1)
+
