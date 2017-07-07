@@ -1,6 +1,5 @@
 import spidev
 import time
-import os
 import sys
 
 
@@ -28,14 +27,13 @@ delay = 1
 
 while True:
     data = ReadChannel(0)
+    volts = convertVolts(data)
+    temp = convertTemp(volts)
 
     light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
-    volts = convertVolts(data)
-    temp = convertTemp(volts)
-
     print("Temp:{}".format(temp))
     time.sleep(delay)
