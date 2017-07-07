@@ -38,5 +38,5 @@ while True:
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
-    print("Temp:{}({}V{}degC)".format(deta,volts,temp))
+    print("Temp:{}({}V{}degC)".format(data,volts,temp))
     time.sleep(delay)
