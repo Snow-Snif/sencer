@@ -30,7 +30,7 @@ while True:
     data = ReadChannel(0) #adc value
     volts = convertVolts(data,2) #volt
     temp = convertTemp(volts,2)
-    result = temp
+
 
 
     light_level = ReadChannel(1)
@@ -38,5 +38,5 @@ while True:
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
-    print("Temp:{}({}V{}degC)".format(result,volts,temp))
+    print("Temp:{}({}V{}degC)".format(deta,volts,temp))
     time.sleep(delay)
