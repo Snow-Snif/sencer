@@ -25,7 +25,6 @@ light_channel = 1
 
 delay = 1
 
-t0=(get_adc(0)*3.3/1024-0.5)/0.01
 
 while True:
     data = ReadChannel(0) #adc value
