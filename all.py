@@ -30,12 +30,13 @@ t0=(get_adc(0)*3.3/1024-0.5)/0.01
 while True:
     data = ReadChannel(0) #adc value
     volts = convertVolts(data,2) #volt
-    temp = convertTemp(volts,2) #temp
+    temp = convertTemp(data,2)
+
 
     light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
-    print("Temp:{}({}V{}degC)".format(data,volts,temp))
+    print("Temp:{}({}V{}degC)".format(temp,volts,data))
     time.sleep(delay)
