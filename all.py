@@ -16,7 +16,7 @@ def convertVolts(data,places):
     return volts
 
 def convertTemp(data,places):
-    temp = ((330 * data) / float(1023)) - 50.0
+    temp = ((data * 3.3) / float(1023)) - 50.0
     temp = round(temp, places)
     return temp
 
@@ -25,13 +25,14 @@ light_channel = 1
 
 delay = 1
 
+
 while True:
-    data = ReadChannel(0)
-    volts = convertVolts(data,2)
-    temp = convertTemp(volts,2)
+    data = ReadChannel(0) #adc value
+    volts = convertVolts(data,2) #volt
+    temp = convertTemp(volts,2) #temp
 
     light_level = ReadChannel(1)
-    light_volts = convertVolts(light_level, 5)
+    light_volts = convertVolts(light_level, 2)
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
