@@ -12,12 +12,12 @@ def ReadChannel(channel):
 
 def convertVolts(data,places):
     volts = (data * 3.3) / float(1023)
-    volts = round(volts, places)
+    volts = round(volts, 4)
     return volts
 
 def convertTemp(data,places):
-    temp = ((data * 330) / float(1023) - 50.0)
-    temp = round(temp, places)
+    temp = ((100 * volts) - 50.0)
+    temp = round(temp, 4)
     return temp
 
 temp_channel = 0
@@ -25,16 +25,16 @@ light_channel = 1
 
 delay = 1
 
-Temp=(ReadChannel(0)*3.3/1024-0.5)/0.01
-
 while True:
     data = ReadChannel(0)
-    volts = convertVolts(data,2)
+    volts = convertVolts(data)
+    temp = convertTemp(volts)
+
 
     light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
-    print("Temp:{}({}V)".format(Temp,volts))
+    print("Temp:{}".format(temp))
     time.sleep(delay)
