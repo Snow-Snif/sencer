@@ -25,17 +25,16 @@ light_channel = 1
 
 delay = 1
 
+Temp=(ReadChannel(0)*3.3/1024-0.5)/0.01
 
 while True:
     data = ReadChannel(0)
     volts = convertVolts(data,2)
-
-
 
     light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
 
     print("--------------------------------------------")
     print("Light: {} ({}V)".format(light_level, light_volts))
-    print("Temp:{}({}V)".format(temp,volts))
+    print("Temp:{}({}V)".format(Temp,volts))
     time.sleep(delay)
