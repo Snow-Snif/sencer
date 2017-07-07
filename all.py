@@ -24,8 +24,6 @@ def convertVolts(data,places):
 
 light_channel = 1
 
-delay = 1
-
 while True:
     light_level = ReadChannel(1)
     light_volts = convertVolts(light_level, 2)
@@ -38,5 +36,5 @@ while True:
         print("Light: {} ({}V)".format(light_level, light_volts))
         print "--------------------------------------------"
 
-    time.sleep(1)
+    time.sleep(5)
 
