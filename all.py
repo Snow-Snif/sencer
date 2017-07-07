@@ -35,8 +35,8 @@ while True:
         print("Last valid input: " + str(datetime.datetime.now()))
         print("Temperature: %d C" % result.temperature)
         print("Humidity: %d %%" % result.humidity)
-        print "--------------------------------------------"
         print("Light: {} ({}V)".format(light_level, light_volts))
+        print "--------------------------------------------"
 
     time.sleep(1)
 
