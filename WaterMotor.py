@@ -2,8 +2,8 @@ import wiringpi
 import time
 import sys
 
-motor1_pin = 23
-motor2_pin = 24
+motor1_pin = 16
+motor2_pin = 21
 
 param = sys.argv
 
