@@ -1,4 +1,4 @@
-
+# this code DON'T USE
 import time
 import sys
 import spidev
