@@ -1,38 +1,32 @@
-import wiringpi
+import RPi.GPIO as GPIO
 import time
-import sys
 
-motor1_pin = 16
-motor2_pin = 21
+pwm_pin = 16
+in1_pin = 20
+in2_pin = 21
 
-param = sys.argv
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pwm_pin, GPIO.OUT)
+GPIO.setup(in1_pin, GPIO.OUT)
+GPIO.setup(in2_pin, GPIO.OUT)
 
-order = param[1]
+pwm = GPIO.PWM(pwm_pin, 500)
+pwm.start(0)
 
-second = int(param[2])
+def clockwise():
+    GPIO.output(in1_pin, True)
+    GPIO.output(in2_pin, False)
 
-wiringpi.wiringPiSetupGpio()
-wiringpi.pinMode( motor1_pin, 1 )
-wiringpi.pinMode( motor2_pin, 1 )
+def counter_clockwise():
+    GPIO.output(in1_pin, False)
+    GPIO.output(in2_pin, True)
 
-if order == "go":
-    if second == 0:
-        print("stop 0")
+while True:
+    cmd = input("Command, f/r 0..9, E.g. f5 :")
+    direction = cmd[0]
+    if direction == "f":
+        clockwise()
     else:
-        print(str(second)+"per cycle")
-    wiringpi.digitalWrite( motor1_pin, 1 )
-    wiringpi.digitalWrite( motor2_pin, 0 )
-    time.sleep(second)
-elif order == "back":
-    if second == 0:
-        print("stop 0")
-    else:
-        print(str(second)+"per cycle(rev)")
-    wiringpi.digitalWrite( motor1_pin, 0 )
-    wiringpi.digitalWrite( motor2_pin, 1 )
-    time.sleep(second)
-
-if order == "break" or second != 0:
-    print("brake")
-    wiringpi.digitalWrite( motor1_pin, 1 )
-    wiringpi.digitalWrite( motor2_pin, 1 )
+        counter_clockwise()
+    speed = int(cmd[1]) * 10
+    pwm.ChangeDutyCycle(speed)
