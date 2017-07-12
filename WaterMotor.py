@@ -1,32 +1,18 @@
 import RPi.GPIO as GPIO
 import time
+import sys
 
-pwm_pin = 16
-in1_pin = 20
-in2_pin = 21
-
+pwn_pin = 16
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(pwm_pin, GPIO.OUT)
-GPIO.setup(in1_pin, GPIO.OUT)
-GPIO.setup(in2_pin, GPIO.OUT)
+GPIO.setmode(pwn_pin,GPIO.OUT)
 
-pwm = GPIO.PWM(pwm_pin, 500)
-pwm.start(0)
+pwm_led = GPIO.PWM(pwn_pin,500)
+pwm_led.stat(100)
 
-def clockwise():
-    GPIO.output(in1_pin, True)
-    GPIO.output(in2_pin, False)
-
-def counter_clockwise():
-    GPIO.output(in1_pin, False)
-    GPIO.output(in2_pin, True)
-
-while True:
-    cmd = input("Command, f/r 0..9, E.g. f5 :")
-    direction = cmd[0]
-    if direction == "f":
-        clockwise()
-    else:
-        counter_clockwise()
-    speed = int(cmd[1]) * 10
-    pwm.ChangeDutyCycle(speed)
+try:
+    while True:
+        duty = 80
+        pwm_led.ChangeDutyCycle(duty)
+except KeyboardInterrupt:
+    print("stop")
+    sys.exit(0)
