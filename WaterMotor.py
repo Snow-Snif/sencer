@@ -4,7 +4,7 @@ import sys
 
 pwn_pin = 16
 GPIO.setmode(GPIO.BCM)
-GPIO.setmode(pwn_pin,GPIO.OUT)
+GPIO.setmode(16,GPIO.OUT)
 
 pwm_led = GPIO.PWM(pwn_pin,500)
 pwm_led.stat(100)
